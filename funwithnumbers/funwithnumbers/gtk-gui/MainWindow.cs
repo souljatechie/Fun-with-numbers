@@ -5,6 +5,16 @@ public partial class MainWindow
 {
 	private global::Gtk.UIManager UIManager;
 	
+	private global::Gtk.Action FileAction;
+	
+	private global::Gtk.Action OptionsAction;
+	
+	private global::Gtk.Action PrimeNumbersAction;
+	
+	private global::Gtk.Action FibonacciSequenceAction;
+	
+	private global::Gtk.Action removeAction;
+	
 	private global::Gtk.VBox vbox1;
 	
 	private global::Gtk.MenuBar menubar1;
@@ -13,7 +23,7 @@ public partial class MainWindow
 	
 	private global::Gtk.VBox vbox3;
 	
-	private global::Gtk.Button button1;
+	private global::Gtk.HButtonBox hbuttonbox2;
 
 	protected virtual void Build ()
 	{
@@ -21,17 +31,32 @@ public partial class MainWindow
 		// Widget MainWindow
 		this.UIManager = new global::Gtk.UIManager ();
 		global::Gtk.ActionGroup w1 = new global::Gtk.ActionGroup ("Default");
+		this.FileAction = new global::Gtk.Action ("FileAction", global::Mono.Unix.Catalog.GetString ("File"), null, null);
+		this.FileAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("File");
+		w1.Add (this.FileAction, null);
+		this.OptionsAction = new global::Gtk.Action ("OptionsAction", global::Mono.Unix.Catalog.GetString ("Options"), null, null);
+		this.OptionsAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Options");
+		w1.Add (this.OptionsAction, null);
+		this.PrimeNumbersAction = new global::Gtk.Action ("PrimeNumbersAction", global::Mono.Unix.Catalog.GetString ("Prime Numbers"), null, null);
+		this.PrimeNumbersAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Prime Numbers");
+		w1.Add (this.PrimeNumbersAction, null);
+		this.FibonacciSequenceAction = new global::Gtk.Action ("FibonacciSequenceAction", global::Mono.Unix.Catalog.GetString ("Fibonacci Sequence"), null, null);
+		this.FibonacciSequenceAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Fibonacci Sequence");
+		w1.Add (this.FibonacciSequenceAction, null);
+		this.removeAction = new global::Gtk.Action ("removeAction", global::Mono.Unix.Catalog.GetString ("E_xit"), null, "gtk-remove");
+		this.removeAction.ShortLabel = global::Mono.Unix.Catalog.GetString ("Exit");
+		w1.Add (this.removeAction, "<Primary><Mod2>x");
 		this.UIManager.InsertActionGroup (w1, 0);
 		this.AddAccelGroup (this.UIManager.AccelGroup);
 		this.Name = "MainWindow";
-		this.Title = global::Mono.Unix.Catalog.GetString ("MainWindow");
+		this.Title = global::Mono.Unix.Catalog.GetString ("Fun With Numbers");
 		this.WindowPosition = ((global::Gtk.WindowPosition)(4));
 		// Container child MainWindow.Gtk.Container+ContainerChild
 		this.vbox1 = new global::Gtk.VBox ();
 		this.vbox1.Name = "vbox1";
 		this.vbox1.Spacing = 6;
 		// Container child vbox1.Gtk.Box+BoxChild
-		this.UIManager.AddUiFromString ("<ui><menubar name=\'menubar1\'/></ui>");
+		this.UIManager.AddUiFromString (@"<ui><menubar name='menubar1'><menu name='FileAction' action='FileAction'><menuitem name='removeAction' action='removeAction'/></menu><menu name='OptionsAction' action='OptionsAction'><menuitem name='PrimeNumbersAction' action='PrimeNumbersAction'/><menuitem name='FibonacciSequenceAction' action='FibonacciSequenceAction'/></menu></menubar></ui>");
 		this.menubar1 = ((global::Gtk.MenuBar)(this.UIManager.GetWidget ("/menubar1")));
 		this.menubar1.Name = "menubar1";
 		this.vbox1.Add (this.menubar1);
@@ -48,21 +73,16 @@ public partial class MainWindow
 		this.vbox3.Name = "vbox3";
 		this.vbox3.Spacing = 6;
 		// Container child vbox3.Gtk.Box+BoxChild
-		this.button1 = new global::Gtk.Button ();
-		this.button1.CanFocus = true;
-		this.button1.Name = "button1";
-		this.button1.UseUnderline = true;
-		this.button1.Label = global::Mono.Unix.Catalog.GetString ("Start\n");
-		this.vbox3.Add (this.button1);
-		global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.vbox3 [this.button1]));
+		this.hbuttonbox2 = new global::Gtk.HButtonBox ();
+		this.hbuttonbox2.Name = "hbuttonbox2";
+		this.vbox3.Add (this.hbuttonbox2);
+		global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.vbox3 [this.hbuttonbox2]));
 		w3.Position = 1;
 		w3.Expand = false;
 		w3.Fill = false;
 		this.hbox1.Add (this.vbox3);
 		global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.vbox3]));
 		w4.Position = 0;
-		w4.Expand = false;
-		w4.Fill = false;
 		this.vbox1.Add (this.hbox1);
 		global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.hbox1]));
 		w5.Position = 1;
@@ -74,5 +94,6 @@ public partial class MainWindow
 		this.DefaultHeight = 426;
 		this.Show ();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
+		this.removeAction.Activated += new global::System.EventHandler (this.OnExit);
 	}
 }
