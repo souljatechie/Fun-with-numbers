@@ -19,11 +19,17 @@ public partial class MainWindow
 	
 	private global::Gtk.MenuBar menubar1;
 	
+	private global::Gtk.ScrolledWindow GtkScrolledWindow;
+	
+	private global::Gtk.TextView resultsBox;
+	
 	private global::Gtk.HBox hbox1;
 	
-	private global::Gtk.VBox vbox3;
+	private global::Gtk.VBox vbox2;
 	
-	private global::Gtk.HButtonBox hbuttonbox2;
+	private global::Gtk.HBox hbox2;
+	
+	private global::Gtk.Button button2;
 
 	protected virtual void Build ()
 	{
@@ -65,27 +71,58 @@ public partial class MainWindow
 		w2.Expand = false;
 		w2.Fill = false;
 		// Container child vbox1.Gtk.Box+BoxChild
+		this.GtkScrolledWindow = new global::Gtk.ScrolledWindow ();
+		this.GtkScrolledWindow.Name = "GtkScrolledWindow";
+		this.GtkScrolledWindow.ShadowType = ((global::Gtk.ShadowType)(1));
+		// Container child GtkScrolledWindow.Gtk.Container+ContainerChild
+		this.resultsBox = new global::Gtk.TextView ();
+		this.resultsBox.Buffer.Text = "Your code will run here";
+		this.resultsBox.CanFocus = true;
+		this.resultsBox.Name = "resultsBox";
+		this.resultsBox.Overwrite = true;
+		this.resultsBox.WrapMode = ((global::Gtk.WrapMode)(2));
+		this.GtkScrolledWindow.Add (this.resultsBox);
+		this.vbox1.Add (this.GtkScrolledWindow);
+		global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.GtkScrolledWindow]));
+		w4.Position = 1;
+		// Container child vbox1.Gtk.Box+BoxChild
 		this.hbox1 = new global::Gtk.HBox ();
 		this.hbox1.Name = "hbox1";
 		this.hbox1.Spacing = 6;
 		// Container child hbox1.Gtk.Box+BoxChild
-		this.vbox3 = new global::Gtk.VBox ();
-		this.vbox3.Name = "vbox3";
-		this.vbox3.Spacing = 6;
-		// Container child vbox3.Gtk.Box+BoxChild
-		this.hbuttonbox2 = new global::Gtk.HButtonBox ();
-		this.hbuttonbox2.Name = "hbuttonbox2";
-		this.vbox3.Add (this.hbuttonbox2);
-		global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.vbox3 [this.hbuttonbox2]));
-		w3.Position = 1;
-		w3.Expand = false;
-		w3.Fill = false;
-		this.hbox1.Add (this.vbox3);
-		global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.vbox3]));
-		w4.Position = 0;
+		this.vbox2 = new global::Gtk.VBox ();
+		this.vbox2.Name = "vbox2";
+		this.vbox2.Spacing = 6;
+		// Container child vbox2.Gtk.Box+BoxChild
+		this.hbox2 = new global::Gtk.HBox ();
+		this.hbox2.Name = "hbox2";
+		this.hbox2.Spacing = 6;
+		// Container child hbox2.Gtk.Box+BoxChild
+		this.button2 = new global::Gtk.Button ();
+		this.button2.CanFocus = true;
+		this.button2.Name = "button2";
+		this.button2.UseUnderline = true;
+		this.button2.Label = global::Mono.Unix.Catalog.GetString ("Run");
+		this.hbox2.Add (this.button2);
+		global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.hbox2 [this.button2]));
+		w5.Position = 0;
+		w5.Expand = false;
+		w5.Fill = false;
+		this.vbox2.Add (this.hbox2);
+		global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.vbox2 [this.hbox2]));
+		w6.Position = 0;
+		w6.Expand = false;
+		w6.Fill = false;
+		this.hbox1.Add (this.vbox2);
+		global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.hbox1 [this.vbox2]));
+		w7.Position = 0;
+		w7.Expand = false;
+		w7.Fill = false;
 		this.vbox1.Add (this.hbox1);
-		global::Gtk.Box.BoxChild w5 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.hbox1]));
-		w5.Position = 1;
+		global::Gtk.Box.BoxChild w8 = ((global::Gtk.Box.BoxChild)(this.vbox1 [this.hbox1]));
+		w8.Position = 2;
+		w8.Expand = false;
+		w8.Fill = false;
 		this.Add (this.vbox1);
 		if ((this.Child != null)) {
 			this.Child.ShowAll ();
@@ -95,5 +132,6 @@ public partial class MainWindow
 		this.Show ();
 		this.DeleteEvent += new global::Gtk.DeleteEventHandler (this.OnDeleteEvent);
 		this.removeAction.Activated += new global::System.EventHandler (this.OnExit);
+		this.button2.Clicked += new global::System.EventHandler (this.OnClick);
 	}
 }
